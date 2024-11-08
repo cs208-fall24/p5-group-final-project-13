@@ -69,7 +69,7 @@ is who on your initial project meeting. Each student needs to fill out
 ONE of the TODO items below and then push the updated README.md to github.
 
 * student1 == Nathan Marquis
-* student2 == TODO
+* student2 == Emmett Mallon
 * student3 == TODO
 
 === Task 1 - Run the website
