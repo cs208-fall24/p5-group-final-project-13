@@ -49,7 +49,6 @@ app.get('/s1comments', function (req, res) {
 
 app.post('/s1add', function (req, res) {
   console.log('adding comment: ' + req.body.comment)
-  //TODO You will need to to do a SQL Insert here
   const stmt = db.prepare('INSERT INTO student1 (comment) VALUES (?)')
   stmt.run(req.body.comment)
   stmt.finalize()
@@ -57,7 +56,6 @@ app.post('/s1add', function (req, res) {
 
 app.post('/s1delete', function (req, res) {
   console.log('deleting comment')
-  //TODO you will need to delete here
   const stmt = db.prepare('DELETE FROM student1 where id = (?)')
   stmt.run(req.body.id)
   stmt.finalize()
