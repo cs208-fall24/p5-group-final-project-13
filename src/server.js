@@ -80,13 +80,19 @@ app.post('/s1delete', function (req, res) {
 
 })
 
-///////////////
-// Student 2 //
-
+// student 2
 app.get('/student2', function (req, res) {
-  console.log('GET called')
-  res.render('student2')
-})
+  console.log('GET called');
+
+  // Hardcoded array of comments
+  const comments = [
+    { text: 'This is an awesome course!' },
+    { text: 'I love quantum cooking!' }
+  ];
+
+  res.render('student2', { comments: comments });
+});
+
 
 
 ///////////////
