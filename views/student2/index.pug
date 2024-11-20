@@ -2,11 +2,10 @@ doctype html
 html
   head
     title Student 2 - Quantum Cooking
-    link(rel='stylesheet' href='css/student2.css')
 
+    link(rel='stylesheet', href='/css/student2.css')
   body
     h1 Emmett Mallon
-
     h2 Quantum Cooking
 
     //- Location Section
@@ -36,14 +35,10 @@ html
         li Quantum Cooking Equipment Design
         li Quantum Ingredient Manipulation
 
+        //- images
         <img src="/img/QuantumKitchen.png" alt="Quantum Kitchen" style="width:500px;height:600px;">
         <img src="/img/GordonRamsay.png" alt="Gordon Ramsay: Professor/Dean of Students/Department Chair/Basically Everything Else" style="width:500px;height:600px;">
 
-
-    //- Display Comments Section
-    if comments.length > 0
-      ul
-        each comment in comments
-          li= comment.text
-    else
-      p Add any comments you may have here.
+    //- Link to comments page
+    section
+      a(href='/s2comments') View Comments

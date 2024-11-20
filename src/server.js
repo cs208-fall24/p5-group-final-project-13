@@ -80,19 +80,49 @@ app.post('/s1delete', function (req, res) {
 
 })
 
-// student 2
-app.get('/student2', function (req, res) {
-  console.log('GET called');
 
-  // Hardcoded array of comments
-  const comments = [
-    { text: 'This is an awesome course!' },
-    { text: 'I love quantum cooking!' }
-  ];
+    ////////////////////
+    //   student 2    //
 
-  res.render('student2', { comments: comments });
-});
 
+    app.get('/student2', function (req, res) {
+      console.log('GET called for student2')
+      res.render('student2')
+    })
+    
+    app.get('/s2comments', function (req, res) {
+      const local = { comments: [] }
+      db.each('SELECT id, comment FROM student2', function (err, row) {
+          if (err) {
+              console.log(err)
+          } else {
+              local.comments.push({ id: row.id, comment: row.comment })
+          }
+      }, function (err, numrows) {
+          if (!err) {
+              res.render('s2comments', local)
+          } else {
+              console.log(err)
+          }
+      })
+      console.log('GET called')
+    })
+    
+    app.post('/s2add', function (req, res) {
+      console.log('adding comment: ' + req.body.comment)
+      const stmt = db.prepare('INSERT INTO student2 (comment) VALUES (?)')
+      stmt.run(req.body.comment)
+      stmt.finalize()
+    })
+    
+    app.post('/s2delete', function (req, res) {
+      console.log('deleting comment')
+      const stmt = db.prepare('DELETE FROM student2 where id = (?)')
+      stmt.run(req.body.id)
+      stmt.finalize()
+      console.log('deleted comment')
+    
+    })
 
 
 ///////////////

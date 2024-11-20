@@ -1,0 +1,21 @@
+doctype html
+link(rel='stylesheet' href='css/student2.css')
+
+head
+    title Quantum Cooking Comments
+body
+    h1 Comments 
+    form(action="/s2add", method="post", id='myForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
+            label(for='comment') Add comment:
+            input#comment(type='text' name='comment')
+            input(type='submit' value='Add')
+    ul 
+        - for (let i=0; i < comments.length; i++)
+                li= comments[i].id + " " + comments[i].comment
+                    section
+                        form(action="/s2delete", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                            input(type='hidden', name='id' value=comments[i].id)
+                            input(type='submit', value='Delete')
+                        form(action="/s2edit", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                            input(type='hidden', name='id' value=comments[i].id)
+                            input(type='submit', value='Edit')
