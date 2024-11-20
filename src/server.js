@@ -54,13 +54,21 @@ app.post('/s1add', function (req, res) {
   stmt.finalize()
 })
 
+app.post('/s1edit', function (req, res) {
+  console.log('editing comment')
+  const stmt = db.prepare('UPDATE student1 SET comment = (?) WHERE id = (?)')
+  stmt.run(req.body.comment)
+  stmt.run(req.body.id)
+  stmt.finalize()
+  console.log('edited comment')
+})
+
 app.post('/s1delete', function (req, res) {
   console.log('deleting comment')
   const stmt = db.prepare('DELETE FROM student1 where id = (?)')
   stmt.run(req.body.id)
   stmt.finalize()
   console.log('deleted comment')
-
 })
 
 ///////////////

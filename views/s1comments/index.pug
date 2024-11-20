@@ -4,18 +4,34 @@ link(rel='stylesheet' href='css/student1.css')
 head
     title Pencil Pushing Comments
 body
+    //- script(src='main.js')
     h1 Comments 
-    form(action="/s1add", method="post", id='myForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
+    form(action="/s1add", method="post", id='addForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
             label(for='comment') Add comment:
-            input#comment(type='text' name='comment')
+            input#comment(type='text' name='comment' required='')
             input(type='submit' value='Add')
     ul 
         - for (let i=0; i < comments.length; i++)
                 li= comments[i].id + " " + comments[i].comment
-                    section
-                        form(action="/s1delete", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
-                            input(type='hidden', name='id' value=comments[i].id)
-                            input(type='submit', value='Delete')
+                    section(class="allComments")
+                        button.open-button(onclick='openForm()') Open Form
+                        #myForm.form-popup
+                        form.form-container(action='/s1edit', method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                            label(for='comment')
+                                b Edit comment
+                            input(type='text' placeholder='Enter new comment' name='comment' required='')
+                            button.btn(type='submit') Submit
+                            button.btn.cancel(type='button' onclick='closeForm()') Close
                         form(action="/s1edit", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
                             input(type='hidden', name='id' value=comments[i].id)
                             input(type='submit', value='Edit')
+                        form(action="/s1delete", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                            input(type='hidden', name='id' value=comments[i].id)
+                            input(type='submit', value='Delete')
+    script.
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
