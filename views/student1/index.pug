@@ -1,32 +1,34 @@
 doctype html
 link(rel='stylesheet' href='css/student1.css')
+link(rel='shortcut icon' href='#')
 
 head
     title Pencil Pushing
 body
-    h1 Nathan Marquis
-    h2 Pencil Pushing
-    section 
+    h1.headings Nathan Marquis
+    h2.headings Pencil Pushing
+    section
         h2 Location 
         p The Pencil Pushing wing of our university is located in the quaint little town of Books Keep. There are plenty of paper mills surrounding the town with a well stocked forest to keep it coming! Feel free to peruse around, although most of our students tend to stay indoors as much as possible. 
-    section 
+    section
         h2 About 
             section 
-                h3 First thing
-                p Lorem ipsum
+                h3 Writing Paperwork
+                p Here we take great pride in writing copious amounts of paperwork. We spend the majority of each and every day, including weekends to ensure that every single piece of information is properly recorded and accounted for. There is no end to our work, but one must imagine us happy. 
             section 
-                h3 Second thing
-                p Lorem ipsum
+                h3 Filing Paperwork
+                p The next focus we have is that our students learn to properly index and categorize our extensive library of information in our 320,842 square kilometers of filing cabinets. Students leave here in excellent physical and mental condition, prepared for any possibility in their pencil pushing futures. 
             section 
-                h3 Third thing
-                p Lorem ipsum
+                h3 Theory of Paperwork
+                p The final challenge we give to our students is to look into the vast and storied history of paper work. They must design their own organizing and managing solutions based upon the endeavors of our forebearers who lost blood(from papercuts), sweat and tears in the search for optimizing documents in the greatest possible way. 
     section
-        h2 Things To Do
+        h2 Things To Do 
         ul
-            li First thing
-            // List of a couple things to do 
-        // 2 images showing how cool the university is
-        a(href='/s1comments') Comments
-        ul 
-            li First comment
-            //List of 5 comments from database, else display nothing
+            li Hunt for typos
+            li Land a mediocre job at a midsize company
+            li Perfect the art of looking busy
+        
+        a(href='/s1comments' id="comments-link") Comments
+        ul
+            - for (let i=0; i < comments.length; i++)
+                    li= comments[i].comment
