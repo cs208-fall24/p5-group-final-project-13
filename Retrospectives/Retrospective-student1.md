@@ -1,7 +1,7 @@
 # Retrospective
 
-- name: Jane Doe
-- email: janedoe@u.boisestate.edu
+- name: Nathan Marquis
+- email: nathanmarquis659@u.boisestate.edu
 
 ## Experience
 
@@ -14,3 +14,9 @@ TODO
 ## Sources used
 
 TODO
+
+
+Meeting 2 progress
+    - Added comments page
+    - Filled out major information
+    - 

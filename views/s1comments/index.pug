@@ -1,0 +1,25 @@
+doctype html
+link(rel='stylesheet' href='css/student1.css')
+
+head
+    title Pencil Pushing Comments
+body
+    h1 Comments 
+    form(action="/s1add", method="post", id='myForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
+            label(for='todo') Add comment:
+            input#todo(type='text' name='todo')
+            input(type='submit' value='Add')
+    ul 
+        - for (let i=0; i < comments.length; i++)
+                li= comments[i].id + " " + comments[i].comment
+                    form(action="/s1delete", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                        input(type='hidden', name='id' value=comments[i].id)
+                        input(type='submit', value='Delete')
+    ul 
+        //Showing all comments
+        li Comment lorem ipsum
+            section
+                button(type="button", class="btn", id="editButton") 
+                    | Edit 
+                button(type="button", class="btn", id="deleteButton") 
+                    | Delete
