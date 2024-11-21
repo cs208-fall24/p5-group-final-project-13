@@ -8,22 +8,21 @@ body
     a(href='/student1') Back
     h1 Comments 
     form(action="/s1add", method="post", id='addForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
-            label(for='comment') Add comment:
             input#comment(type='text' name='comment' required='')
-            input(type='submit' value='Add')
+            input(type='submit' value='Submit')
     ul 
         - for (let i=0; i < comments.length; i++)
                 li= comments[i].comment
                     section(class="allComments")
-                        button#open-button.open-button(onclick='openForm()') Edit
-                        #myForm.form-popup
+                        button(id="open-button" + comments[i].id class="open-button" onclick='openForm(' + comments[i].id +')') Edit
+                        div(id="myForm" + comments[i].id class="form-popup")
                             form.form-container(action='/s1edit', method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
-                                label(for='comment')
+                                label(for='comment' + comments[i].id)
                                     b Edit comment
                                 input(type='text' placeholder='Enter new comment' name='comment' required='')
                                 input(type='hidden' name='id' value=comments[i].id)
                                 button.btn(type='submit') Submit
-                                button.btn.cancel(type='button' onclick='closeForm()') Close
+                                button.btn.cancel(type='button' onclick='closeForm(' + comments[i].id +')') Close
                         form(action="/s1delete", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
                             input(type='hidden', name='id' value=comments[i].id)
                             input(type='submit', value='Delete')
