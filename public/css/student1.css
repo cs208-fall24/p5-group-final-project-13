@@ -3,6 +3,7 @@ body{
     padding-left:300px;
     padding-right:300px;
     padding-top:20px;
+    padding-bottom:50px;
 
     cursor: url('/img/pencil.png'), auto;
 }
@@ -47,6 +48,10 @@ img{
   font-weight:bold;
 }
 
+#comment{
+  margin-right: 5px;
+}
+
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
   background-color: #555;
@@ -67,7 +72,7 @@ img{
 .form-container {
   max-width: 300px;
   padding: 10px;
-  background-color: white;
+  background-color:white;
 }
 
 /* Full-width input fields */

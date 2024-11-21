@@ -8,7 +8,7 @@ body
     a(href='/student1') Back
     h1 Comments 
     form(action="/s1add", method="post", id='addForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
-            input#comment(type='text' name='comment' required='')
+            input#comment(type='text' name='comment' required='' placeholder='Enter new comment' value='')
             input(type='submit' value='Submit')
     ul 
         - for (let i=0; i < comments.length; i++)
@@ -19,7 +19,7 @@ body
                             form.form-container(action='/s1edit', method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
                                 label(for='comment' + comments[i].id)
                                     b Edit comment
-                                input(type='text' placeholder='Enter new comment' name='comment' required='')
+                                input(type='text'  name='comment' required='' value=comments[i].comment)
                                 input(type='hidden' name='id' value=comments[i].id)
                                 button.btn(type='submit') Submit
                                 button.btn.cancel(type='button' onclick='closeForm(' + comments[i].id +')') Close
