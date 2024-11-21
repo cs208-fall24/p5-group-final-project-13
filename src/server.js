@@ -79,10 +79,8 @@ app.post('/s1delete', function (req, res) {
 
 })
 
-
     ////////////////////
     //   student 2    //
-
 
     app.get('/student2', function (req, res) {
       console.log('GET called for student2')
