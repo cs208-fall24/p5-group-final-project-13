@@ -5,4 +5,8 @@ body{
 .small-img {
     max-width: 300px;
     height: auto;
-  }
+}
+h1{
+    font-family: Cambria;
+    color: #f4d0e4;
+}
