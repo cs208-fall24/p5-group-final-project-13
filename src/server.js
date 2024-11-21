@@ -20,14 +20,9 @@ app.set('views', 'views')
 app.set('view engine', 'pug')
 app.use(express.urlencoded({ extended: false }))
 
-// Create the comments table
-db.serialize(() => {
-  db.run("CREATE TABLE comments (id INTEGER PRIMARY KEY, text TEXT)")
-})
-
 // Seed some initial comments into the database (for testing)
 db.serialize(() => {
-  const stmt = db.prepare("INSERT INTO comments (text) VALUES (?)")
+  const stmt = db.prepare("INSERT INTO student2 (comment) VALUES (?)")
   stmt.run('This is an amazing program!')
   stmt.run('I love learning about basket weaving underwater.')
   stmt.run('The best major ever!')
