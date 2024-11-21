@@ -10,6 +10,10 @@ db.run(`CREATE TABLE student1 (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   comment TEXT NOT NULL)`)
 
+  db.run(`CREATE TABLE student2 (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    comment TEXT NOT NULL)`)
+
 const app = express()
 app.use(express.static('public'))
 app.set('views', 'views')
