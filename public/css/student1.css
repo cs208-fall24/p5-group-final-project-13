@@ -1,3 +1,107 @@
 body{
     background-color: yellow;
+    padding-left:300px;
+    padding-right:300px;
+    padding-top:20px;
+    padding-bottom:50px;
+
+    cursor: url('/img/pencil.png'), auto;
+}
+
+p{
+  font-size: medium;
+  font-weight: normal;
+  padding-left: 20px
+}
+
+h1{
+  font-size: xx-large;
+}
+
+h2{
+  font-size: x-large;
+}
+
+h3{
+  font-size: large;
+}
+
+img{
+  width: 300px;
+  padding: 5px;
+}
+
+.sub{
+  padding-left:20px;
+}
+
+.headings{
+  text-align: center;
+}
+
+.allComments{
+    display:flex;
+}
+
+#comments-link {
+  font-size: large;
+  font-weight:bold;
+}
+
+#comment{
+  margin-right: 5px;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color:white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Set a style for the submit button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
 }

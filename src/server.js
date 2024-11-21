@@ -41,8 +41,21 @@ app.get('/', function (req, res) {
 // Student 1 //
 
 app.get('/student1', function (req, res) {
+  const local = { comments: [] }
+  db.each('SELECT * FROM student1 ORDER BY id LIMIT 5;', function (err, row) {
+      if (err) {
+          console.log(err)
+      } else {
+          local.comments.push({ id: row.id, comment: row.comment })
+      }
+  }, function (err, numrows) {
+      if (!err) {
+          res.render('student1', local)
+      } else {
+          console.log(err)
+      }
+  })
   console.log('GET called for student1')
-  res.render('student1')
 })
 
 app.get('/s1comments', function (req, res) {
@@ -60,14 +73,22 @@ app.get('/s1comments', function (req, res) {
           console.log(err)
       }
   })
-  console.log('GET called')
+  console.log('Comments page GET called for student1')
 })
 
 app.post('/s1add', function (req, res) {
-  console.log('adding comment: ' + req.body.comment)
+  console.log('adding comment: ' + req.body.id)
   const stmt = db.prepare('INSERT INTO student1 (comment) VALUES (?)')
   stmt.run(req.body.comment)
   stmt.finalize()
+})
+
+app.post('/s1edit', function (req, res) {
+  console.log('editing comment: ' + req.body.id)
+  const stmt = db.prepare('UPDATE student1 SET comment = (?) WHERE id = (?)')
+  stmt.run(req.body.comment, req.body.id)
+  stmt.finalize()
+  console.log('edited comment')
 })
 
 app.post('/s1delete', function (req, res) {
@@ -76,7 +97,6 @@ app.post('/s1delete', function (req, res) {
   stmt.run(req.body.id)
   stmt.finalize()
   console.log('deleted comment')
-
 })
 
     ////////////////////
