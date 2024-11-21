@@ -9,7 +9,6 @@ const db = new sqlite3.Database(':memory:')
 db.run(`CREATE TABLE student1 (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   comment TEXT NOT NULL)`)
-
   
 const app = express()
 app.use(express.static('public'))

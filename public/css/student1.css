@@ -3,6 +3,8 @@ body{
     padding-left:300px;
     padding-right:300px;
     padding-top:20px;
+
+    cursor: url('/img/pencil.png'), auto;
 }
 
 p{
@@ -21,6 +23,11 @@ h2{
 
 h3{
   font-size: large;
+}
+
+img{
+  width: 300px;
+  padding: 5px;
 }
 
 .headings{
