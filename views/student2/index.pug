@@ -41,4 +41,7 @@ html
 
     //- Link to comments page
     section
-      a(href='/s2comments') Comments
+       a(href='/s2comments' id="comments-link") Comments
+        ul
+            - for (let i=0; i < comments.length; i++)
+                    li= comments[i].comment
