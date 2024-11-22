@@ -3,7 +3,7 @@ import sql from 'sqlite3'
 
 const sqlite3 = sql.verbose()
 
-// Create an in memory table to use
+// Create an in-memory SQLite database
 const db = new sqlite3.Database(':memory:')
 
 db.run(`CREATE TABLE student1 (
@@ -16,15 +16,63 @@ app.set('views', 'views')
 app.set('view engine', 'pug')
 app.use(express.urlencoded({ extended: false }))
 
+// Seed some initial comments into the database (for testing)
+db.serialize(() => {
+  const stmt = db.prepare("INSERT INTO student2 (comment) VALUES (?)")
+  stmt.run('This is an amazing program!')
+  stmt.run('I love learning about basket weaving underwater.')
+  stmt.run('The best major ever!')
+  stmt.run('I can\'t wait to dive in and start weaving.')
+  stmt.run('This is a unique and challenging field of study.')
+  stmt.finalize()
+})
+
+// Route for the main index page
 app.get('/', function (req, res) {
-  console.log('GET called')
+  console.log('GET called for index')
   res.render('index')
 })
 
 /////////////// 
 // Student 1 //
 
+/////////////// 
+// Student 1 //
+
 app.get('/student1', function (req, res) {
+  const local = { comments: [] }
+  db.each('SELECT * FROM student1 ORDER BY id LIMIT 5;', function (err, row) {
+      if (err) {
+          console.log(err)
+      } else {
+          local.comments.push({ id: row.id, comment: row.comment })
+      }
+  }, function (err, numrows) {
+      if (!err) {
+          res.render('student1', local)
+      } else {
+          console.log(err)
+      }
+  })
+  console.log('GET called for student1')
+})
+
+app.get('/s1comments', function (req, res) {
+  const local = { comments: [] }
+  db.each('SELECT id, comment FROM student1', function (err, row) {
+      if (err) {
+          console.log(err)
+      } else {
+          local.comments.push({ id: row.id, comment: row.comment })
+      }
+  }, function (err, numrows) {
+      if (!err) {
+          res.render('s1comments', local)
+      } else {
+          console.log(err)
+      }
+  })
+  console.log('Comments page GET called for student1')
   const local = { comments: [] }
   db.each('SELECT * FROM student1 ORDER BY id LIMIT 5;', function (err, row) {
       if (err) {
@@ -97,7 +145,7 @@ app.get('/student2', function (req, res) {
 
 
 app.get('/student3', function (req, res) {
-  console.log('GET called')
+  console.log('GET called for student3')
   res.render('student3')
 })
 

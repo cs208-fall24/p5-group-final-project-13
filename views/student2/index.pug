@@ -1,7 +1,47 @@
 doctype html
-link(rel='stylesheet' href='css/student2.css')
+html
+  head
+    title Student 2 - Quantum Cooking
 
-head
-    title Under Water Basket weaver (Masters) - student 2
-body
-    h1 You will learn how to weave baskets underwater
+    link(rel='stylesheet', href='/css/student2.css')
+  body
+    h1 Emmett Mallon
+    h2 Quantum Cooking
+
+    //- Location Section
+    section
+      h2 Location
+      p This is a fully asynchronous course, all you need is a lab environment (kitchen) to work in.
+
+    //- About Section
+    section
+      h2 About
+      section
+        h3 Curriculum
+        p This degree will teach you how to apply quantum physics to the culinary arts, such as making soups in multiple states of matter simultaneously.
+      section
+        h3 Research Opportunities
+        p While pursuing this degree, you will gain experience in topics such as quantum sensors for food quality, quantum computing for food processing,<br> quantum effects in food chemistry, and quantum robotics in cooking.
+      section
+        h3 Career Paths
+        p After graduating, you will have learned enough useless information to be able to rule the world and potentially take over the galaxy.
+
+    //- Things To Do Section
+    section
+      h2 Things To Do
+      ul
+        li Quantum Cooking Simulations
+        li Quantum Flavor Engineering
+        li Quantum Cooking Equipment Design
+        li Quantum Ingredient Manipulation
+
+        //- images
+        <img src="/img/QuantumKitchen.png" alt="Quantum Kitchen">
+        <img src="/img/GordonRamsay.png" alt="Professor Gordon Ramsay">
+
+    //- Link to comments page
+    section
+       a(href='/s2comments' id="comments-link") Comments
+        ul
+            - for (let i=0; i < comments.length; i++)
+                    li= comments[i].comment

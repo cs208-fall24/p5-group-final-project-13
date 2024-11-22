@@ -1,7 +1,7 @@
 # Retrospective
 
-- name: Jane Doe
-- email: janedoe@u.boisestate.edu
+- name: Emmett Mallon
+- email: emmettmallon@u.boisestate.edu
 
 ## Experience
 
