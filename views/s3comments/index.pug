@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title All Comments - Chronomancy Masters Program
+    link(rel='stylesheet' href='css/student3.css')
+  body
+    a(href='/student3') Back
+    h1 Chronomancy Masters Program Comments
+
+    section
+      h2 All Comments
+      if comments.length > 0
+        ul
+          each comment in comments
+            li.comment-item
+              | #{comment.comment}
+              section(class="allComments")
+                button(id="open-button" + comment.id, class="open-button", onclick='openForm(' + comment.id +')') Edit
+                div(id="myForm" + comment.id, class="form-popup")
+                  form.form-container(action='/s3edit', method="POST", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                    label(for='comment' + comment.id)
+                      b Edit comment
+                    input(type="text", name="comment", required=true, value=comment.comment)
+                    input(type="hidden", name="id", value=comment.id)
+                    button.btn(type="submit") Submit
+              form(action="/s3delete", method="POST", style="display:inline-block;")
+                input(type="hidden", name="id", value=comment.id)
+                input(type="submit", value="Delete")
+      else
+        p No Comments Yet
+
+    section
+      h2 Add New Comment
+      form(action="/s3add", method="POST")
+        label(for="comment") Your Comment:
+        textarea(name="comment", required=true)
+        button(type="submit") Submit Comment
+
+    section(id="editForm", style="display:none;")
+      h2 Edit Comment
+      form(id="editCommentForm", action="/s3edit", method="POST")
+        label(for="comment") Edit Your Comment:
+        textarea(name="comment", id="editText", required=true)
+        input(type="hidden", name="id", id="editId")
+        button(type="submit") Save
+
+    script(src="js/student3.js")

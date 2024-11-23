@@ -8,17 +8,24 @@ const db = new sqlite3.Database(':memory:')
 
 db.run(`CREATE TABLE student3 (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  task TEXT NOT NULL)`)
+  comment TEXT NOT NULL)`)
 
-const app = express()
-app.use(express.static('public'))
-app.set('views', 'views')
-app.set('view engine', 'pug')
-app.use(express.urlencoded({ extended: false }))
+
+db.run('DELETE FROM student3', (err) => {
+  if (err) {
+    console.log(err);
+  }
+});
+
+const app = express();
+app.use(express.static('public'));
+app.set('views', 'views');
+app.set('view engine', 'pug');
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
-  console.log('GET called')
-  res.render('index')
+  console.log('GET called on /')
+  res.render('index');
 })
 
 
@@ -37,72 +44,71 @@ app.get('/student2', function (req, res) {
 
 
 // Student 3 //
-
-// get
 app.get('/student3', function (req, res) {
   const local = { comments: [] };
-  db.each('SELECT * FROM student1', function (err, row) {
-      if (err) {
-          console.log('Error fetching comments:', err);
-      } else {
-          local.comments.push({ id: row.id, comment: row.comment });
-      }
-  }, function (err) {
-      if (!err) {
-          res.render('student1', local);
-      } else {
-          console.log('Error in callback:', err);
-      }
-  })
-})
-// getcomments
+  db.all('SELECT * FROM student3 LIMIT 5', function (err, rows) {
+    if (err) {
+      console.log('Error fetching comments:', err);
+      return res.status(500).send('Error fetching comments');
+    }
+
+    rows.forEach(row => {
+      local.comments.push({ id: row.id, comment: row.comment });
+    });
+
+    res.render('student3/index', local);
+  });
+});
 
 app.get('/s3comments', function (req, res) {
   const local = { comments: [] };
-  db.each('SELECT id, comment FROM student3', function (err, row) {
-      if (err) {
-          console.log('Error fetching tasks:', err);
-      } else {
-          local.comments.push({ id: row.id, comment: row.comment });
-      }
-  }, function (err) {
-      if (!err) {
-          res.render('s3comments', local);
-      } else {
-          console.log('Error in callback:', err);
-      }
-  })
-})
+  db.all('SELECT * FROM student3 LIMIT 5', function (err, rows) {
+    if (err) {
+      console.log('Error fetching comments:', err);
+      return res.status(500).send('Error fetching comments');
+    }
+    rows.forEach(row => {
+      local.comments.push({ id: row.id, comment: row.comment });
+    });
+    
+    res.render('s3comments/index', local);
+  });
+});
 
 app.post('/s3add', function (req, res) {
   const task = req.body.comment;
-  const intoTask = db.prepare('INSERT INTO todo (comment) VALUES (?)');
+  const intoTask = db.prepare('INSERT INTO student3 (comment) VALUES (?)');
   intoTask.run(task);
   intoTask.finalize();
-  res.redirect('/');
-})
+  res.redirect('/s3comments');
+});
 
 app.post('/s3edit', function (req, res) {
-  const task = req.body.task;
-  const task1 = req.body.id;
-  console.log('editing comment: ' + task1);
-  const intoTask = db.prepare('INSERT INTO todo (task) VALUES (?)');
-  intoTask.run(task, task1);
-  intoTask.finalize();
-  console.log('edited comment : ' + task);
-  res.redirect('/');
-})
-
-
-// deleting
-app.post('/s3delete', function (req, res) {
-  console.log('deleting: '+ req.body.comment);
   const taskId = req.body.id;
+  const taskComment = req.body.comment;
+  
+  console.log(`Editing comment with ID ${taskId}: ${taskComment}`);
+  
+  const stmt = db.prepare('UPDATE student3 SET comment = ? WHERE id = ?');
+  stmt.run(taskComment, taskId, function (err) {
+    if (err) {
+      console.log('Error updating comment:', err);
+      return res.status(500).send('Error updating comment');
+    }
+    res.redirect('/s3comments');
+  });
+  stmt.finalize();
+});
+
+app.post('/s3delete', function (req, res) {
+  const taskCmt = req.body.comment;
+  const taskId = req.body.id;
+  console.log('Deleting comment ID: ', taskId);
   const intoTask = db.prepare('DELETE FROM student3 WHERE id = ?');
   intoTask.run(taskId);
   intoTask.finalize();
-  console.log('Comment deleted');
-  res.redirect('/');
+  console.log('Comment deleted: ', taskCmt);
+  res.redirect('/s3comments');
 })
 
 // Start the web server

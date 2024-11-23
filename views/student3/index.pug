@@ -37,4 +37,15 @@ section
     img(src="https://i.imgur.com/pgONwPu.jpeg", alt="Temporal Engineering Building", class="small-img")
     img(src="https://i.imgur.com/qg6FNJ8.jpeg", alt="Eternal Flame", class="small-img")
 
-
+section
+  h2 Latest Comments
+  if comments.length > 0
+    ul
+      each comment in comments
+        li.comment-item
+          p Comment ID: #{comment.id} - #{comment.comment}
+  else
+    p No Comments Available Yet
+section
+  a(href="/s3comments") Add/Edit Comment Here
+script(src="js/student3.js")
