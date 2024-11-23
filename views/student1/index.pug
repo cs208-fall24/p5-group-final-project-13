@@ -1,8 +1,36 @@
 doctype html
 link(rel='stylesheet' href='css/student1.css')
+link(rel='shortcut icon' href='#')
 
 head
     title Pencil Pushing
 body
-    h1 Pencil Pushing 
-    h2 This will be a degree on how to properly push pencils!
+    h1.headings Nathan Marquis
+    h2.headings Pencil Pushing
+    section
+        h2 Location 
+        p The Pencil Pushing wing of our university is located in the quaint little town of Books Keep. There are plenty of paper mills surrounding the town with a well stocked forest to keep it coming! Feel free to peruse around, although most of our students tend to stay indoors as much as possible. 
+    section
+        h2 About 
+            section.sub
+                h3 Writing Paperwork
+                p Here we take great pride in writing copious amounts of paperwork. We spend the majority of each and every day, including weekends to ensure that every single piece of information is properly recorded and accounted for. There is no end to our work, but one must imagine us happy. 
+            section.sub
+                h3 Filing Paperwork
+                p The next focus we have is that our students learn to properly index and categorize our extensive library of information in our 320,842 square kilometers of filing cabinets. Students leave here in excellent physical and mental condition, prepared for any possibility in their pencil pushing futures. 
+            section.sub
+                h3 Theory of Paperwork
+                p The final challenge we give to our students is to look into the vast and storied history of paper work. They must design their own organizing and managing solutions based upon the endeavors of our forebearers who lost blood(from papercuts), sweat and tears in the search for optimizing documents in the greatest possible way. 
+    section
+        h2 Things To Do 
+        ul
+            li Hunt for typos
+            img(id="image1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6d0v-c7sn9IT1xGvIsm0QS_gnmatgcB_hvg&s")
+            li Land a mediocre job at a midsize company
+            li Perfect the art of looking busy
+            img(id="image2" src="https://www.wikihow.com/images/thumb/5/54/Look-Busy-at-Work-Without-Really-Working-Step-7-Version-2.jpg/aid10300-v4-728px-Look-Busy-at-Work-Without-Really-Working-Step-7-Version-2.jpg.webp")
+
+        a(href='/s1comments' id="comments-link") Comments
+        ul
+            - for (let i=0; i < comments.length; i++)
+                    li= comments[i].comment

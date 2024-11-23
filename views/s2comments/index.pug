@@ -1,0 +1,32 @@
+//- comments
+doctype html
+link(rel='stylesheet' href='css/student2.css')
+link(rel='shortcut icon' href='#')
+
+head
+    title Quantum Cooking Comments
+body
+    a(href='/student2') Back
+    h1 Comments 
+    form(action="/s2add", method="post", id='addForm', onsubmit="setTimeout(function(){window.location.reload();},50);")
+            input#comment(type='text' name='comment' required='' placeholder='Enter new comment' value='')
+            input(type='submit' value='Submit')
+    ul 
+        - for (let i=0; i < comments.length; i++)
+                li= comments[i].comment
+                    section(class="allComments")
+                        button(id="open-button" + comments[i].id class="open-button" onclick='openForm(' + comments[i].id +')') Edit
+                        div(id="myForm" + comments[i].id class="form-popup")
+                            form.form-container(action='/s2edit', method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                                label(for='comment' + comments[i].id)
+                                    b Edit comment
+                                input(type='text'  name='comment' required='' value=comments[i].comment)
+                                input(type='hidden' name='id' value=comments[i].id)
+                                button.btn(type='submit') Submit
+                                button.btn.cancel(type='button' onclick='closeForm(' + comments[i].id +')') Close
+                        form(action="/s2delete", method="post", onsubmit="setTimeout(function(){window.location.reload();},50);")
+                            input(type='hidden', name='id' value=comments[i].id)
+                            input(type='submit', value='Delete')
+    script(src='js/student2.js')
+
+
