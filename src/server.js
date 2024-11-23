@@ -20,17 +20,6 @@ app.set('views', 'views')
 app.set('view engine', 'pug')
 app.use(express.urlencoded({ extended: false }))
 
-// Seed some initial comments into the database (for testing)
-db.serialize(() => {
-  const stmt = db.prepare("INSERT INTO student2 (comment) VALUES (?)")
-  stmt.run('This is an amazing program!')
-  stmt.run('I love learning about basket weaving underwater.')
-  stmt.run('The best major ever!')
-  stmt.run('I can\'t wait to dive in and start weaving.')
-  stmt.run('This is a unique and challenging field of study.')
-  stmt.finalize()
-})
-
 // Route for the main index page
 app.get('/', function (req, res) {
   console.log('GET called for index')
