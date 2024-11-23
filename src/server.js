@@ -44,7 +44,6 @@ db.run('DELETE FROM student3', (err) => {
   }
 });
 
-const app = express();
 app.use(express.static('public'));
 app.set('views', 'views');
 app.set('view engine', 'pug');
