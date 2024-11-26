@@ -6,7 +6,6 @@ const sqlite3 = sql.verbose()
 // Create an in-memory SQLite database
 const db = new sqlite3.Database(':memory:')
 
-
 db.run(`CREATE TABLE student1 (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   comment TEXT NOT NULL)`)
@@ -44,7 +43,6 @@ app.get('/', function (req, res) {
   console.log('GET called on /')
   res.render('index');
 })
-
 
 // Student 1 //
 app.get('/student1', function (req, res) {
@@ -215,9 +213,6 @@ app.post('/s2delete', function (req, res) {
   // Log the completion of the delete operation
   console.log('deleted comment')
 })
-
-
-
 
 // Student 3 //
 app.get('/student3', function (req, res) {
