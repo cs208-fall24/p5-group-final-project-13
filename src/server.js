@@ -26,13 +26,6 @@ db.run(`CREATE TABLE student3 (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   comment TEXT NOT NULL)`)
 
-
-db.run('DELETE FROM student3', (err) => {
-  if (err) {
-    console.log(err);
-  }
-});
-
 app.use(express.static('public'));
 app.set('views', 'views');
 app.set('view engine', 'pug');
