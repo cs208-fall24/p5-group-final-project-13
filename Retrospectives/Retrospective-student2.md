@@ -5,7 +5,9 @@
 
 ## Experience
 
-This project has been a valuable learning experience, both in terms of technical skills and team collaboration. The task of building a website for a fictional university allowed me to apply various aspects of web development, including HTML, CSS, and JavaScript, while also integrating server-side logic with Node.js. One of the biggest challenges was working with Git in a team environment, especially when it came to managing branches and resolving merge conflicts. However, this process helped improve my version control skills, which will be crucial in future development projects.
+This project has been a valuable learning experience, both in terms of technical skills and team collaboration. The task of building a website for a fictional university allowed me to apply various aspects of web development, including HTML, CSS, and JavaScript, while also integrating server-side logic with Node.js. 
+One of the biggest challenges was working with Git in a team environment, especially when it came to managing branches and resolving merge conflicts. 
+However, this process helped improve my version control skills, which will be crucial in future development projects.
 
 The use of Agile methodologies, including simulated stand-up meetings and iterative development, helped maintain a steady pace of progress. Even though the project was done asynchronously, communication was key to keeping everyone on the same page. Our team's ability to collaborate effectively through tools like GitHub and Discord ensured that the project moved forward smoothly.
 
