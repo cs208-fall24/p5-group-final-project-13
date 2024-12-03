@@ -8,4 +8,4 @@ function closeForm(id) {
   console.log("close: " + id);
   document.getElementById("myForm" + id).style.display = "none";
   document.getElementById("open-button" + id).style.display = "block";
-} 
+  } 
